@@ -1,16 +1,63 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
-};
+import { Component } from "react";
+
+
+export class App extends Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  }
+  updateFeedbackOptions = (e) => { 
+    console.log(e)
+    this.setState(prevState => { 
+      return {
+        good: prevState.good + 1,
+        neutral: prevState.neutral + 1,
+        bad: prevState.bad + 1,
+      }
+    })
+  }
+
+  countTotalFeedback = ({ good, neutral, bad }) => { 
+    return (good  + neutral  + bad)
+  }
+  // countPositiveFeedbackPercentage()
+
+  render() {
+    const { good } = this.state;
+    const { neutral } = this.state;
+    const { bad } = this.state;
+    const options = ['good', 'neutral', 'bad'];
+ 
+    return (
+      <>
+        <div>
+          <div>
+            <h2> Please leave feedback</h2>
+            <ul>
+              {options.map((option, index) => (
+                <li key={index}>
+                  <button
+                    onClick={this.updateFeedbackOptions}>
+                    {option}
+                </button>
+                </li>
+              ))}
+            </ul>
+
+          </div>
+            
+          <div>
+            <h2> Statistics</h2>
+            <p> Good:{ good }</p>
+            <p> Neutral:{ neutral }</p>
+            <p> Bad: {bad} </p>
+            <p> Total:{this.countTotalFeedback (ee) }</p>
+            <p> Positive feedback:%</p>
+          </div>
+        </div>
+      </>
+    );
+  }
+}
+  
