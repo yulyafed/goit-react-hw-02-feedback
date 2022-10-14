@@ -52,7 +52,7 @@ export class App extends Component {
             <p> Good:{ good }</p>
             <p> Neutral:{ neutral }</p>
             <p> Bad: {bad} </p>
-            <p> Total:{this.countTotalFeedback (eee) }</p>
+            <p> Total:{this.countTotalFeedback (eeeeee) }</p>
             <p> Positive feedback:%</p>
           </div>
         </div>
