@@ -8,12 +8,12 @@ export class App extends Component {
     bad: 0,
   }
 
-  updateFeedbackOptions = (e) => { 
+  updateFeedbackOptions = (key) => {
     this.setState(prevState => {
       return {
-        good: prevState.good + 1,
-        neutral: prevState.neutral + 1,
-        bad: prevState.bad + 1,
+        good: key === 0 ? prevState.good + 1 : prevState.good,
+        neutral: key === 1 ? prevState.neutral + 1 : prevState.neutral,
+        bad: key === 2 ? prevState.bad + 1 : prevState.bad,
       };
     });
   }
@@ -23,6 +23,11 @@ export class App extends Component {
   }
 
   countPositiveFeedbackPercentage = ({ good, neutral, bad }) => { 
+    const total = good + neutral + bad;
+    if (total === 0) {
+      return 0;
+    }
+
     return Math.round(good * 100 / (good + neutral + bad));
   }
 
@@ -31,7 +36,11 @@ export class App extends Component {
     const { good } = this.state;
     const { neutral } = this.state;
     const { bad } = this.state;
-    const options = ['good', 'neutral', 'bad'];
+    const options = [
+      {id: 0, name: 'Good'},
+      {id: 1, name: 'Neutral'},
+      {id: 2, name: 'Bad'}
+    ];
  
     return (
       <>
@@ -39,9 +48,9 @@ export class App extends Component {
           <div>
             <h2> Please leave feedback</h2>
             <ul>
-              {options.map((option, index) => (
-                <li key={index}>
-                  <button onClick={this.updateFeedbackOptions}> {option} </button>
+              {options.map((option) => (
+                <li key={option.id}>
+                  <button onClick={() => {this.updateFeedbackOptions(option.id)}}> {option.name} </button>
                 </li>
               ))}
             </ul>
