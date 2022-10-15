@@ -1,4 +1,6 @@
 import { Component } from "react";
+import { SectionFeedbacks } from "./SectionFeedbackOptions/SectionFeedback";
+import { SectionStatistics } from "./SectionStatistics/SectionStatistics";
 
 
 export class App extends Component {
@@ -7,6 +9,12 @@ export class App extends Component {
     neutral: 0,
     bad: 0,
   }
+
+  options = [
+    {id: 0, name: 'Good'},
+    {id: 1, name: 'Neutral'},
+    {id: 2, name: 'Bad'}
+    ];     
 
   updateFeedbackOptions = (key) => {
     this.setState(prevState => {
@@ -36,35 +44,14 @@ export class App extends Component {
     const { good } = this.state;
     const { neutral } = this.state;
     const { bad } = this.state;
-    const options = [
-      {id: 0, name: 'Good'},
-      {id: 1, name: 'Neutral'},
-      {id: 2, name: 'Bad'}
-    ];
- 
-    return (
-      <>
+    
+       return (
+      
         <div>
-          <div>
-            <h2> Please leave feedback</h2>
-            <ul>
-              {options.map((option) => (
-                <li key={option.id}>
-                  <button onClick={() => {this.updateFeedbackOptions(option.id)}}> {option.name} </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        <div>
-            <h2> Statistics</h2>
-            <p> Good:{ good }</p>
-            <p> Neutral:{ neutral }</p>
-            <p> Bad: {bad} </p>
-            <p> Total:{this.countTotalFeedback ({ good, neutral, bad }) }</p>
-            <p> Positive feedback:{ this.countPositiveFeedbackPercentage({ good, neutral, bad })}%</p>
-          </div>
+           <SectionFeedbacks options={this.options} onLeaveFeedback={this.updateFeedbackOptions}/>
+           <SectionStatistics good={good} neutral={neutral} bad={bad} total={this.countTotalFeedback({good, neutral, bad})} positivePercentage={this.countPositiveFeedbackPercentage}/>
         </div>
-      </>
+      
     );
   };
 }
