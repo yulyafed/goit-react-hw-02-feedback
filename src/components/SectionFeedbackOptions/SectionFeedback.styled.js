@@ -4,6 +4,7 @@ export const Container = styled.div`
 border: 1px solid black;
 border-radius: 4px;
 width: 30%;
+padding: 0 10px;
 `;
 
 export const Title = styled.h2`
