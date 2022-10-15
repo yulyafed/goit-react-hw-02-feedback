@@ -1,10 +1,12 @@
+// import PropTypes from 'prop-types';
+import { Text } from './NotificationMessage.styled'
 
 export const RenderNoFeedback = () => { 
     return (
         <>
-            <p>
+            <Text>
                 There is no feedback
-            </p>
+            </Text>
         </>
 
     )

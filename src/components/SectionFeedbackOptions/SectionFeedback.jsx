@@ -1,11 +1,13 @@
-import { ListFeedbackOptions } from "./FeedbackOptions/FeedbackOptions"
+import { ListFeedbackOptions } from "./FeedbackOptions/FeedbackOptions";
+// import PropTypes from 'prop-types';
+import { Container, Title  } from './SectionFeedback.styled'
 
 export const SectionFeedbacks = ({ options, onLeaveFeedback }) => { 
        
     return (
-        <div>
-            <h2> Please leave feedback</h2>
+        <Container>
+            <Title> Please leave feedback</Title>
             <ListFeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback}/>
-          </div>
+          </Container>
     )
 }

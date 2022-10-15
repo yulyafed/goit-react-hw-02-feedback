@@ -47,10 +47,10 @@ export class App extends Component {
     
        return (
       
-        <div>
+        <>
            <SectionFeedbacks options={this.options} onLeaveFeedback={this.updateFeedbackOptions}/>
            <SectionStatistics good={good} neutral={neutral} bad={bad} total={this.countTotalFeedback({good, neutral, bad})} positivePercentage={this.countPositiveFeedbackPercentage}/>
-        </div>
+        </>
       
     );
   };
