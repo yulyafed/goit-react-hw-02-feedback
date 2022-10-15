@@ -1,13 +1,21 @@
+import PropTypes from 'prop-types';
 import { ListFeedbackOptions } from "./FeedbackOptions/FeedbackOptions";
-// import PropTypes from 'prop-types';
-import { Container, Title  } from './SectionFeedback.styled'
+import { Container, Title } from './SectionFeedback.styled';
 
 export const SectionFeedbacks = ({ options, onLeaveFeedback }) => { 
-       
-    return (
+
+  return (
+      
         <Container>
             <Title> Please leave feedback</Title>
-            <ListFeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback}/>
-          </Container>
-    )
+            <ListFeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback} />
+        </Container>
+    );
 }
+SectionFeedbacks.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,}),
+  ).isRequired,
+};
